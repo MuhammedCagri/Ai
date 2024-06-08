@@ -33,7 +33,7 @@ $functions = [
     $Ai->setPrompt('What monkeys like');
     $Ai->setDocument([['role'=>'assistant','content'=>'Document: Monkeys only loves bananas']]); // document tag is related to my system definitions
     $Ai->setAnswerCount(1);
-    $Ai->setTemperature(0.2);
+    $Ai->setTemperature(0.3);
 
     $Ai->setFunctions($functions);
     $Ai->setFunctionClass($callBackFunctions);

@@ -32,7 +32,7 @@ class OpenAIService {
                     }
 
                     public function setMemory($memory){
-                        $this->memory = $memory;
+                        $this->memory = $memory; // dummy
                     }
 
                     public function setAnswerCount(int $count){
