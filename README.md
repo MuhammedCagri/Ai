@@ -9,4 +9,5 @@ prompt : 'Who is president of america'
 Answer : ![alt text](image-1.png)
 
 prompt (Doc related question): 'What monkeys like'
+
 Answer : ![alt text](image-2.png)
