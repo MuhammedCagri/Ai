@@ -42,8 +42,6 @@ function sendRecording() {
     .then((response) => response.json())
     .then((data) => {
       transcriptionResult.textContent = data.transcription;
-      //             transcriptionResult.textContent = data;
-      //       frameCommunicationSend({ action: "put", message: data.transcription });
     })
     .catch((error) => {
       console.error("Error:", error);
