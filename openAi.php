@@ -199,7 +199,7 @@ class OpenAIService {
                     }
 
 
-                    
+                    // convert mp3 audio file to text ($_POST)
                     public function getTranscription($file){
                                         if (isset($file['audio']) && $file['audio']['error'] === UPLOAD_ERR_OK) {
                                             $fileTmpPath = $file['audio']['tmp_name'];
