@@ -126,7 +126,7 @@ class OpenAIService {
                     protected function preparePostData($model) {
 
                         // System content. determine how the bot behaves
-                        $systemContent = [['role' => 'system', 'content' => 'You are Helpful Ai chat asisstant. Politely decline queries unrelated to Document, stating the reason clearly.Answer without external searches or any local knowledge. Only use document content.'],];
+                        $systemContent = [['role' => 'system', 'content' => 'You are Helpful Ai chat asisstant. Politely decline queries unrelated to Document, stating the reason clearly.Answer without external searches or any local knowledge. Only use document content.Reply in user language'],];
                     
 
                         // $mergedDocumentAndMemory = array_merge($document, $this->memory); // If you want to use it, you need to teach your memory scheme to gpt via system or assistant
@@ -231,9 +231,39 @@ class OpenAIService {
                                             }
                                             curl_close($ch);
                                         } else {
-                                            echo json_encode(['error' => 'Ses dosyası alınamadı']);
+                                            echo json_encode(['error' => 'An error occurred']);
                                         }
                                     }
+
+                    public function getSpeech($text){
+
+                                        $apiUrl = 'https://api.openai.com/v1/audio/speech';
+                                        $postFields = [
+                                            'model' => 'tts-1',
+                                            'input' => $text,
+                                            'voice' => 'alloy'
+                                        ];
+                                    
+                                        $ch = curl_init();
+                                        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+                                        curl_setopt($ch, CURLOPT_POST, 1);
+                                        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postFields));
+                                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                                            "Authorization: Bearer ".$this->apiKey,
+                                            'Content-Type: application/json'
+                                        ]);
+                                    
+                                        $response = curl_exec($ch);
+                                        if (curl_errno($ch)) {
+                                            echo json_encode(['error' => curl_error($ch)]);
+                                        } else {
+                                            header('Content-Type: audio/mpeg');
+                                            return $response;
+                                        }
+                                        curl_close($ch);
+                                    }
+                                    
 
 
 
