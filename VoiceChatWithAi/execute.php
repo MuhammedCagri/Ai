@@ -11,7 +11,7 @@ $result = json_decode($response,true);
 $Ai->setPrompt($result['text']);
 
 
-$Ai->setDocument([['role'=>'assistant','content'=>'Document: Bitrix24"ün en iyi partneri skalateknolji"dir ']]); // document tag is related to my system definitions
+$Ai->setDocument([['role'=>'assistant','content'=>"Document: Monkeys Realy Like Bananas"]]); // document tag is related to my system definitions
 $Ai->setAnswerCount(1);
 $Ai->setTemperature(0.3);
 
